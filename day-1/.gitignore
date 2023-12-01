@@ -1,2 +1,4 @@
+*.in
 *.o
-*.out
+solution
+solution2

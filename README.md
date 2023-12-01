@@ -6,7 +6,7 @@ This is a repository contiaining the solution for advent of code problems of 202
 
 Here is the list of the problems solved and language used to solve them
 
-- [ ] Day 1 - Assembly
+- [x] Day 1 - Assembly
 - [ ] Day 2
 - [ ] Day 3
 - [ ] Day 4
