@@ -28,12 +28,7 @@
            ACCEPT STRING-ELEMENT(3).
 
            PERFORM UNTIL STRING-ELEMENT(3) = SPACE
-      *. DISPLAY "1: " STRING-ELEMENT(1)
-      *. DISPLAY "2: " STRING-ELEMENT(2)
-      *. DISPLAY "3: " STRING-ELEMENT(3)
-      *. DISPLAY "-------------------------------------------------"
              PERFORM NUMBER-CRUNCHING
-      *. DISPLAY "-------------------------------------------------"
 
              MOVE STRING-ELEMENT(2) TO STRING-ELEMENT(1)
              MOVE STRING-ELEMENT(3) TO STRING-ELEMENT(2)
@@ -46,7 +41,6 @@
 
            PERFORM NUMBER-CRUNCHING.
 
-      *.  DISPLAY "---------------------------------------------------"
            DISPLAY TOTAL.
 
            STOP RUN.
@@ -151,6 +145,5 @@
 
            ADD TEMP TO TOTAL.
 
-      * DISPLAY TEMP.
 
            EXIT.

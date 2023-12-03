@@ -1,0 +1,183 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. SOLUTION.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 STRING-ARRAY.
+         05 STRING-ELEMENT OCCURS 3 TIMES.
+           10 CHARACTER-ELEMENT PIC X(1) OCCURS 256 TIMES.
+
+       01 I PIC 9(5) VALUE 0.
+       01 BENCH-STRING.
+           05 BENCH PIC X(1) OCCURS 256 TIMES.
+       01 LFT PIC 9(5) VALUE 0.
+       01 RHT PIC 9(5) VALUE 0.
+       01 RLT PIC 9(5) VALUE 0.
+
+       01 TOTAL PIC 9(10) VALUE 0.
+       01 TEMP PIC 9(10) VALUE 0.
+       01 MTEMP PIC 9(10) VALUE 1.
+       01 CONT PIC 9(1) VALUE 0.
+       01 DCON PIC 9(1) VALUE 0.
+
+
+
+       PROCEDURE DIVISION.
+           MOVE ALL '.' TO STRING-ELEMENT(1).
+           MOVE ALL '.' TO STRING-ELEMENT(2).
+           MOVE ALL '.' TO STRING-ELEMENT(3).
+
+           ACCEPT STRING-ELEMENT(3).
+
+           PERFORM UNTIL STRING-ELEMENT(3) = SPACE
+
+             PERFORM NUMBER-CRUNCHING
+
+             MOVE STRING-ELEMENT(2) TO STRING-ELEMENT(1)
+             MOVE STRING-ELEMENT(3) TO STRING-ELEMENT(2)
+
+             ACCEPT STRING-ELEMENT(3)
+
+           END-PERFORM
+
+           MOVE ALL '.' TO STRING-ELEMENT(3).
+
+           PERFORM NUMBER-CRUNCHING.
+
+           DISPLAY TOTAL.
+
+           STOP RUN.
+
+       NUMBER-CRUNCHING.
+           PERFORM VARYING I FROM 1 BY 1 UNTIL I > LENGTH OF
+           STRING-ELEMENT(2)
+
+           IF CHARACTER-ELEMENT(2, I) = '*'
+             MOVE 1 TO MTEMP
+             MOVE 0 TO CONT
+
+             PERFORM CHECK-LEFT
+             PERFORM CHECK-RIGHT
+
+             PERFORM CHECK-TOP
+             PERFORM CHECK-BOTTOM
+
+             IF CONT = 2
+               ADD MTEMP TO TOTAL
+             END-IF
+           END-IF
+
+           END-PERFORM
+
+           EXIT.
+
+       CHECK-LEFT.
+           IF I = 1
+             EXIT
+           END-IF
+
+           SUBTRACT 1 FROM I GIVING LFT.
+
+           IF CHARACTER-ELEMENT(2, LFT) NUMERIC
+             MOVE STRING-ELEMENT(2) TO BENCH-STRING
+             PERFORM GET-NUMBER
+             MULTIPLY MTEMP BY RLT GIVING MTEMP
+           END-IF
+
+           EXIT.
+
+       CHECK-RIGHT.
+           ADD 1 TO I GIVING LFT.
+
+           IF CHARACTER-ELEMENT(2, LFT) NUMERIC
+             MOVE STRING-ELEMENT(2) TO BENCH-STRING
+             PERFORM GET-NUMBER
+             MULTIPLY MTEMP BY RLT GIVING MTEMP
+           END-IF
+           EXIT.
+
+       CHECK-TOP.
+           MOVE 0 TO DCON.
+
+           IF CHARACTER-ELEMENT(1, I) NUMERIC
+             MOVE STRING-ELEMENT(1) TO BENCH-STRING
+             MOVE I TO LFT
+             PERFORM GET-NUMBER
+             MULTIPLY MTEMP BY RLT GIVING MTEMP
+             MOVE 1 TO DCON
+           END-IF
+
+           IF DCON = 0 AND I > 1 AND CHARACTER-ELEMENT(1, I - 1) NUMERIC 
+             MOVE STRING-ELEMENT(1) TO BENCH-STRING
+             SUBTRACT 1 FROM I GIVING LFT
+             PERFORM GET-NUMBER
+             MULTIPLY MTEMP BY RLT GIVING MTEMP
+           END-IF
+
+           IF DCON = 0 AND CHARACTER-ELEMENT(1, I + 1) NUMERIC
+             MOVE STRING-ELEMENT(1) TO BENCH-STRING
+             ADD 1 TO I GIVING LFT
+             PERFORM GET-NUMBER
+             MULTIPLY MTEMP BY RLT GIVING MTEMP
+           END-IF
+           EXIT.
+
+       CHECK-BOTTOM.
+           MOVE 0 TO DCON.
+
+
+           IF CHARACTER-ELEMENT(3, I) NUMERIC
+             MOVE STRING-ELEMENT(3) TO BENCH-STRING
+             MOVE I TO LFT
+             PERFORM GET-NUMBER
+             MULTIPLY MTEMP BY RLT GIVING MTEMP
+             MOVE 1 TO DCON
+           END-IF
+
+           IF DCON = 0 AND I > 1 AND CHARACTER-ELEMENT(3, I - 1) NUMERIC
+             MOVE STRING-ELEMENT(3) TO BENCH-STRING
+             SUBTRACT 1 FROM I GIVING LFT
+             PERFORM GET-NUMBER
+             MULTIPLY MTEMP BY RLT GIVING MTEMP
+           END-IF
+
+           IF DCON = 0 AND CHARACTER-ELEMENT(3, I + 1) NUMERIC
+             MOVE STRING-ELEMENT(3) TO BENCH-STRING
+             ADD 1 TO I GIVING LFT
+             PERFORM GET-NUMBER
+             MULTIPLY MTEMP BY RLT GIVING MTEMP
+           END-IF
+           EXIT.
+
+
+       GET-NUMBER.
+           MOVE LFT TO RHT.
+
+           PERFORM VARYING LFT FROM LFT BY -1 UNTIL LFT < 1 OR
+             BENCH(LFT) NOT NUMERIC
+           END-PERFORM
+
+           ADD 1 TO LFT.
+
+           PERFORM VARYING RHT FROM RHT BY 1 UNTIL BENCH(RHT) NOT 
+           NUMERIC
+           END-PERFORM
+
+           SUBTRACT 1 FROM RHT.
+
+           PERFORM CONVERT-NUMBER.
+           ADD 1 TO CONT.
+
+           EXIT.
+
+        CONVERT-NUMBER.
+           MOVE 0 TO TEMP.
+
+           PERFORM VARYING LFT FROM LFT BY 1 UNTIL LFT > RHT
+             MULTIPLY TEMP BY 10 GIVING TEMP
+             ADD FUNCTION NUMVAL(BENCH(LFT)) TO TEMP
+           END-PERFORM
+
+           MOVE TEMP TO RLT
+           EXIT.
+
