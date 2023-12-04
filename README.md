@@ -8,8 +8,8 @@ Here is the list of the problems solved and language used to solve them
 
 - [x] Day 1 - Assembly
 - [x] Day 2 - Clojure
-- [ ] Day 3
-- [ ] Day 4
+- [x] Day 3 - COBOL
+- [x] Day 4 - Erlang
 - [ ] Day 5
 - [ ] Day 6
 - [ ] Day 7
