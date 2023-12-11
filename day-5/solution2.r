@@ -61,17 +61,45 @@ applier <-
 
 generate_seeds <- function(data) {
   output <- c()
-  for (i in seq(from = 1, to = length(data), by = 2)) {
-    seqn <- c(data[i], data[i + 1] + data[i] - 1)
+  for (i in seq(from = 1, to = length(data) / 2)) {
+    seqn <- c(data[i * 2 - 1], data[i * 2])
     output <- c(output, list(seqn))
   }
   output
 }
 
+operates <- function(partitions, functions) {
+  min <- 100000000000
+  for (i in partitions) {
+    output <- operate(i, functions)
+    if (output < min) {
+      min <- output
+    }
+  }
+  min
+}
 
 # Applying all the functions on the parition giving set of partition
 operate <- function(partition, functions) {
+  if (partition[2] == 0) {
+    return(list(1000000000000, 0))
+  }
+  if (length(functions) == 0) {
+    return(partition)
+  }
+  output <- list()
+  func <- functions[[1]]
+  rest_func <- functions[-1]
 
+  output <- set_maker(partition, func)
+  min <- 100000000000
+  for (i in output) {
+    data <- operate(i, rest_func)
+    if (data[1] < min) {
+      min <- data[1]
+    }
+  }
+  min
 }
 
 # (2 10)
@@ -81,8 +109,8 @@ set_maker <- function(partition, func) {
   if (length(func) == 0) {
     return(list(partition))
   }
-  output <- c()
-  unchanged <- c()
+  output <- list()
+  unchanged <- list()
   inner <- func[[1]]
   rest <- func[-1]
   p_left <- partition[1]
@@ -91,28 +119,27 @@ set_maker <- function(partition, func) {
   i_right <- inner[2] + inner[3] - 1
 
   # This is messed up because the list are not processed properly
-  if (p_left <= i_left && p_right <= i_right) {
-    unchanged <- c(unchanged, list(c(p_left, i_left - p_left)))
-    output <- c(output, list(c(inner[1], p_right - i_left)))
-  } else if (i_left <= p_left && i_right <= p_right) {
-    unchanged <- c(unchanged, list(c(i_right + 1, p_right - i_right)))
-    output <- c(output, list(c(inner[1] - i_left + p_right + 1), i_right - p_left))
+  if (p_left <= i_left && p_right <= i_right && i_left <= p_right) {
+    unchanged <- append(unchanged, list(c(p_left, i_left - p_left)))
+    output <- append(output, list(c(inner[1], p_right - i_left)))
+  } else if (i_left <= p_left && i_right <= p_right && p_left <= i_right) {
+    unchanged <- append(unchanged, list(c(i_right + 1, p_right - i_right)))
+    output <- append(output, list(c(inner[1] - i_left + p_right + 1, i_right - p_left)))
   } else if (i_left <= p_left && p_right <= i_right) {
-    output <- c(output, list(c(inner[1] - i_left + p_left), partition[2]))
+    output <- append(output, list(c(inner[1] - i_left + p_left, partition[2])))
   } else if (p_left <= i_left && i_right <= p_right) {
-    unchanged <- c(
-      unchanged, list(c(p_left, i_left - p_left)),
-      list(c(i_right + 1, p_right - i_right))
-    )
-    output <- c(output, list(c(inner[1], inner[3])))
+    unchanged <- append(unchanged, list(c(p_left, i_left - p_left)), list(c(i_right + 1, p_right - i_right)))
+    output <- append(output, list(c(inner[1], inner[3])))
   } else {
-    unchanged <- c(unchanged, list(c(partition)))
+    unchanged <- append(unchanged, list(c(partition)))
   }
 
   for (i in unchanged) {
     data <- set_maker(i, rest)
+    output <- c(output, list(data[[1]]))
   }
   output
 }
 
-print(c(1, c(list(1, 2))))
+
+print(operates(generate_seeds(seeds), applier))
