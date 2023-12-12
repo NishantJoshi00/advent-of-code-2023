@@ -10,9 +10,9 @@ Here is the list of the problems solved and language used to solve them
 - [x] Day 2 - Clojure
 - [x] Day 3 - COBOL
 - [x] Day 4 - Erlang
-- [ ] Day 5
-- [ ] Day 6
-- [ ] Day 7
+- [x] Day 5 - R
+- [x] Day 6 - Julia
+- [x] Day 7 - Scala
 - [ ] Day 8
 - [ ] Day 9
 - [ ] Day 10
