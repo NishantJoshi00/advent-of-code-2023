@@ -13,7 +13,7 @@ Here is the list of the problems solved and language used to solve them
 - [x] Day 5 - R
 - [x] Day 6 - Julia
 - [x] Day 7 - Scala
-- [ ] Day 8
+- [x] Day 8 - Nim
 - [ ] Day 9
 - [ ] Day 10
 - [ ] Day 11
