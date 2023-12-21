@@ -14,8 +14,8 @@ Here is the list of the problems solved and language used to solve them
 - [x] Day 6 - Julia
 - [x] Day 7 - Scala
 - [x] Day 8 - Nim
-- [x] Day 9 - Ocaml
-- [ ] Day 10
+- [x] Day 9 - OCaml
+- [x] Day 10 - Zig
 - [ ] Day 11
 - [ ] Day 12
 - [ ] Day 13
