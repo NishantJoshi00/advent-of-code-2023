@@ -17,7 +17,7 @@ Here is the list of the problems solved and language used to solve them
 - [x] Day 9 - OCaml
 - [x] Day 10 - Zig
 - [x] Day 11 - Octave/Matlab
-- [ ] Day 12
+- [x] Day 12 - Lua
 - [ ] Day 13
 - [ ] Day 14
 - [ ] Day 15
