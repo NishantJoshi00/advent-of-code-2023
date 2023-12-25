@@ -18,8 +18,8 @@ Here is the list of the problems solved and language used to solve them
 - [x] Day 10 - Zig
 - [x] Day 11 - Octave/Matlab
 - [x] Day 12 - Lua
-- [ ] Day 13
-- [ ] Day 14
+- [x] Day 13 - Fortran
+- [x] Day 14 - Perl
 - [ ] Day 15
 - [ ] Day 16
 - [ ] Day 17
