@@ -21,7 +21,7 @@ Here is the list of the problems solved and language used to solve them
 - [x] Day 13 - Fortran
 - [x] Day 14 - Perl
 - [x] Day 15 - Elixir
-- [ ] Day 16
+- [x] Day 16 - Ruby
 - [ ] Day 17
 - [ ] Day 18
 - [ ] Day 19
