@@ -20,7 +20,7 @@ Here is the list of the problems solved and language used to solve them
 - [x] Day 12 - Lua
 - [x] Day 13 - Fortran
 - [x] Day 14 - Perl
-- [ ] Day 15
+- [x] Day 15 - Elixir
 - [ ] Day 16
 - [ ] Day 17
 - [ ] Day 18
