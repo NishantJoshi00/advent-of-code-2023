@@ -23,7 +23,7 @@ Here is the list of the problems solved and language used to solve them
 - [x] Day 15 - Elixir
 - [x] Day 16 - Ruby
 - [x] Day 17 - Haskell
-- [ ] Day 18
+- [x] Day 18 - SmallTalk
 - [ ] Day 19
 - [ ] Day 20
 - [ ] Day 21
