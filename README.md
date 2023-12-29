@@ -26,7 +26,7 @@ Here is the list of the problems solved and language used to solve them
 - [x] Day 18 - SmallTalk
 - [x] Day 19 - PHP
 - [x] Day 20 - Kotlin
-- [ ] Day 21
+- [x] Day 21 - Dart
 - [ ] Day 22
 - [ ] Day 23
 - [ ] Day 24
