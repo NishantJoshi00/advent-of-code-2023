@@ -27,7 +27,7 @@ Here is the list of the problems solved and language used to solve them
 - [x] Day 19 - PHP
 - [x] Day 20 - Kotlin
 - [x] Day 21 - Dart
-- [ ] Day 22
+- [x] Day 22 - Ada
 - [ ] Day 23
 - [ ] Day 24
 - [ ] Day 25
