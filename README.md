@@ -29,5 +29,5 @@ Here is the list of the problems solved and language used to solve them
 - [x] Day 21 - Dart
 - [x] Day 22 - Ada
 - [x] Day 23 - CoffeeScript
-- [ ] Day 24
+- [x] Day 24 - Go
 - [ ] Day 25
