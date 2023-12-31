@@ -28,6 +28,6 @@ Here is the list of the problems solved and language used to solve them
 - [x] Day 20 - Kotlin
 - [x] Day 21 - Dart
 - [x] Day 22 - Ada
-- [ ] Day 23
+- [x] Day 23 - CoffeeScript
 - [ ] Day 24
 - [ ] Day 25
