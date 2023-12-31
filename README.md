@@ -30,4 +30,4 @@ Here is the list of the problems solved and language used to solve them
 - [x] Day 22 - Ada
 - [x] Day 23 - CoffeeScript
 - [x] Day 24 - Go
-- [ ] Day 25
+- [x] Day 25 - Python
